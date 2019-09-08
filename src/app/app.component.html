@@ -1,0 +1,49 @@
+<mdb-navbar SideClass="navbar fixed-top navbar-expand-lg navbar-dark bg-blue scrolling-navbar ie-nav" [containerInside]="false">
+    <logo>
+        <a class="logo navbar-brand" href="#"><strong>{{title}}</strong></a>
+    </logo>
+    <links>
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item waves-light" mdbRippleRadius>
+                <a class="nav-link" routerLink="/my-matches" routerLinkActive="true">
+                    My Matches
+                </a>
+            </li>
+            <li class="nav-item waves-light" mdbRippleRadius>
+                <a class="nav-link" routerLink="/admin" routerLinkActive="true">
+                    Admin
+                </a>
+            </li>
+        </ul>
+        <ul class="navbar-nav nav-flex-icons">
+            <li *ngIf="currentUser == null" class="nav-item waves-light" mdbRippleRadius>
+                <a class="nav-link" routerLink="/login">
+                    Login
+                </a>
+            </li>
+    
+            <li *ngIf="currentUser != null" (click)=signOut() class="nav-item waves-light" mdbRippleRadius>
+                <a class="nav-link">
+                    Logout
+                </a>
+            </li>
+
+            <ngx-avatar *ngIf="currentUser != null" src="{{currentUser.photoURL}}"></ngx-avatar>
+        </ul>
+    </links>
+</mdb-navbar>
+    
+<main>
+    <div class="container mt-5 pt-5">
+        <router-outlet></router-outlet>
+    </div>
+</main>
+    
+<footer class="page-footer blue center-on-small-only">
+    <div class="footer-copyright">
+            <div class="container-fluid">
+                <span>ZsResults.com by <strong>Zsaga</strong> v. 0.0.0</span>
+            </div>
+        </div>
+</footer>
+

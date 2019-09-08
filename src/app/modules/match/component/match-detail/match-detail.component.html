@@ -1,0 +1,91 @@
+<article class="match-detail">
+    <header class="card-header" [ngClass]="getClassName()">
+        <div class="level">
+            <div class="level-left">
+                <div class="level-item">
+                    <span class="">
+                        <i class="fa fa-calendar"></i>
+                    </span>
+
+                    <span class="date-time">
+                            {{ match.startDate | date:'medium' }}
+                    </span>
+                </div>
+
+                <div class="level-item">
+                    <span>
+                        <i class="fa fa-map-marker"></i>
+                    </span>
+
+                    <span class="location">
+                        {{match.location}}
+                    </span>
+                </div>
+            </div>
+
+            <div class="level-right">
+                <div class="level-item">
+                    <span>
+                        <i class="fa fa-futbol-o"></i>
+                    </span>
+
+                    <span>
+                        {{match.categoryName}}
+                    </span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="card-content columns">
+        <div class="column is-7">
+            <div class="">
+                <div class="title" [ngClass]="{ 'strike-out': !match.homeClubName }">
+                    {{match.homeClubName}}
+                </div>
+
+                <div class="title" [ngClass]="{ 'strike-out': !match.awayClubName }">
+                    {{match.awayClubName}}
+                </div>
+            </div>
+        </div>
+
+        <div class="column result is-2">
+            <result-view *ngIf="match.result" [result]="match.result"></result-view>
+        </div>
+
+        <div class="column is-3" >
+            <div class="columns" *ngIf="isEdit || isSubscribable">
+                <div class="column is-3">
+                    <a class="button" [routerLink]="['/edit-match', match.id]"
+                        *ngIf="isEdit" title="Edit">
+    
+                        <span class="icon is-small">
+                            <i class="fa fa-pencil-square-o"></i>
+                        </span>
+                    </a>
+                </div>
+                
+                <div class="column is-3">
+                    <a class="button" (click)="subscribeClickHandler()"
+                        *ngIf="isSubscribable" title="Subscribe">
+    
+                        <span class="icon is-small">
+                            <i class="fa fa-rss-square"></i>
+                        </span>
+                    </a>
+                </div>
+                
+                <div class="column is-3">
+                    <a class="button" [routerLink]="['/result-form', match.id]"
+                        *ngIf="isCommentable" title="Commentate">
+    
+                        <span class="icon is-small">
+                            <i class="fa fa-commenting"></i>
+                        </span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+</article>

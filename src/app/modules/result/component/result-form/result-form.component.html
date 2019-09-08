@@ -1,0 +1,170 @@
+<div class="result-form container">
+  <nav class="level">
+    <div class="level-left">
+        <div class="level-item">
+          <div>
+              <span>{{match.startDate | date:'medium'}}</span>
+          </div>
+          <div>
+              <span>{{match.location}}</span>
+          </div>    
+        </div>
+    </div>
+
+    <div class="level-right">
+      <div class="level-item" *ngIf="false">
+        <button class="button">Start</button>
+        <button class="button">Pause</button>
+        <button class="button">Stop</button>
+      </div>
+    </div>
+  </nav>
+
+  <div class="is-divider" data-content="Match"></div>
+
+  <div class="content">
+    <div class="columns">
+      <div class="column is-six is-text-center vertical-middle">
+        <span class="title is-3">{{match.homeClubName}}</span>
+      </div>
+
+      <div class="is-divider-vertical" data-content="Clubs"></div>
+
+      <div class="column is-six is-text-center vertical-middle">
+          <span class="title is-3">{{match.awayClubName}}</span>
+      </div>
+    </div>
+
+    <div class="columns">
+      <div class="column is-six is-text-center vertical-middle">
+        <span class="title is-3"> - </span>
+      </div>
+
+      <div class="is-divider-vertical" data-content="Result"></div>
+
+      <div class="column is-six is-text-center vertical-middle">
+          <span class="title is-3">( {{temporaryResult.homeResult}} - {{temporaryResult.awayResult}} )</span>
+      </div>
+    </div>
+  </div>
+  
+  <article class="content" *ngIf="true">
+    <div class="is-divider" data-content="Counters"></div>
+
+    <div class="columns">
+      <div class="column is-one-third is-text-center vertical-middle">
+        <zs-result-counter classes="input" name="homeResult" min="0" [(value)]="temporaryResult.homeResult"
+        valueChange=homeResultChangeHandler($event)></zs-result-counter>
+      </div>
+
+      <div class="column is-text-center">
+        <zs-result-counter classes="input" name="minutes" min="0" [(value)]="temporaryResult.minutes"
+          valueChange=minutesResultChangeHandler($event)></zs-result-counter>
+      </div>
+
+      <div class="column is-one-third is-text-center vertical-middle">
+        <zs-result-counter classes="input" name="awayResult" min="0" [(value)]="temporaryResult.awayResult"
+          valueChange=awayResultChangeHandler($event)></zs-result-counter>
+      </div>
+    </div>
+
+    <div class="columns">
+      <div class="column is-text-center">
+        <a class="button" (click)="submitStoryLine()">Submit</a>
+      </div>
+    </div>
+  </article>
+
+  <article class="content" *ngIf="true">
+    <div class="is-divider" data-content="Story"></div>
+
+    <div class="timeline is-centered" *ngIf="messages">
+        <header class="header">
+            <span class="tag is-medium is-primary">1. Half</span>
+        </header>
+
+        <div class="item green" *ngFor="let message of messages"
+            [ngClass]="getClassName(message)">
+
+            <div class="marker"></div>
+
+            <div class="content">
+                <p class="heading">{{message.minutes}}. minutes</p>
+                <p>{{message.homeResult}} - {{message.awayResult}}</p>
+            </div>
+        </div>
+    </div>
+  </article>
+
+  <article class="content" *ngIf="true">
+    <div class="is-divider" data-content="Story"></div>
+
+    <div class="timeline is-centered">
+      <header class="header">
+        <span class="tag is-medium is-primary">1. Half</span>
+      </header>
+
+      <div class="item is-left green">
+        <div class="marker"></div>
+        <div class="content">
+          <p class="heading">1 - 0</p>
+          <p>Zamori - 3.perc</p>
+        </div>
+      </div>
+
+      <div class="item is-left green">
+        <div class="marker"></div>
+        <div class="content">
+          <p class="heading">2 - 0</p>
+          <p>Szabo N - 4.perc</p>
+        </div>
+      </div>
+
+      <div class="item is-right green">
+        <div class="marker"></div>
+        <div class="content">
+          <p class="heading">2 - 1</p>
+          <p>6.perc - Kerekes T</p>
+        </div>
+      </div>
+
+      <header class="header">
+        <span class="tag is-medium is-primary">End</span>
+      </header>
+    </div>
+
+    <div class="timeline is-centered">
+      <header class="header">
+        <span class="tag is-medium is-primary">2. Half</span>
+      </header>
+
+      <div class="item is-left green">
+        <div class="marker"></div>
+        <div class="content">
+          <p class="heading">12 - 9</p>
+          <p>Voros - 32.perc</p>
+        </div>
+      </div>
+
+      <div class="item is-right green">
+        <div class="marker"></div>
+        <div class="content">
+          <p class="heading">12 - 10</p>
+          <p>6.perc - Kerekes T</p>
+        </div>
+      </div>
+
+      <div class="item is-left green">
+        <div class="marker"></div>
+        <div class="content">
+          <p class="heading">13 - 10</p>
+          <p>Szabo N - 34.perc</p>
+        </div>
+      </div>
+
+      <header class="header">
+        <span class="tag is-medium is-primary">End</span>
+      </header>
+    </div>
+  </article>
+</div>

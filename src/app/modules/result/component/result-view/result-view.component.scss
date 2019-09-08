@@ -1,0 +1,9 @@
+.second-half {
+    .home-result:before {
+        content: "(";
+    }
+
+    .away-result:after {
+        content: ")";
+    }
+}

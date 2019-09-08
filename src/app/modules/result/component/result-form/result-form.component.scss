@@ -1,0 +1,140 @@
+.result-form {
+  zs-result-counter {
+    input[type="number"] {
+      width: 50px;
+    }
+  }
+}
+
+.is-text-center {
+  text-align: center;
+}
+
+.is-text-left {
+  text-align: left;
+}
+
+.is-text-right {
+  text-align: right;
+}
+
+.vertical-middle {
+  vertical-align: middle;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.timeline {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+
+  .header {
+    width: 4em;
+    min-width: 4em;
+    max-width: 8em;
+    word-wrap: normal;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .item {
+    width: 50%;
+    align-self: flex-end;
+  }
+
+  &.is-centered {
+    .header {
+      display: flex;
+      width: 100%;
+      align-self: center;
+    }
+
+    .item {
+      display: flex;
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      position: relative;
+      margin-left: 2em;
+      padding-bottom: 1em;
+  
+      &::before {
+        content: "";
+        background-color: #dbdbdb;
+        display: block;
+        width: .1em;
+        height: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+      }
+  
+      &.is-left {
+        align-self: flex-start;
+        margin-left: 0;
+        margin-right: 2em;
+
+        &::before{
+          right: -0.1em;
+          left: auto;
+        }
+  
+        .content {
+          padding: 1.1em 1em 0 0;
+          text-align: right;
+          display: flex;
+          flex-direction: column;
+          align-items: flex-end;
+          flex-basis: 100%;
+        }
+
+        .marker {
+          left: auto;
+          right: -.45em;
+        }
+      }
+  
+      &.is-left.green::before {
+        background-color: #00d1b2;
+      }
+
+      &.is-right.green::before {
+        background-color: #00d1b2;
+      }
+
+      &.is-right {
+        .content {
+          padding: 1em 0 0 1em;
+        }
+      }
+  
+      .content {
+        .heading {
+          font-weight: 800;
+        }
+      }
+
+      &.green {
+        .marker {
+          background-color: #00d1b2 !important;
+          border-color: #00d1b2 !important;
+        }
+      }
+  
+      .marker {
+        position: absolute;
+        background: #dbdbdb;
+        border: .1em solid #dbdbdb;
+        border-radius: 100%;
+        content: "";
+        display: block;
+        height: .8em;
+        left: -0.35em;
+        position: absolute;
+        top: 1.2rem;
+        width: .8em;
+      }
+    }
+  }
+}

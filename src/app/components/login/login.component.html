@@ -1,0 +1,13 @@
+<div *ngIf="!currentUser; else alreadyLoggedIn" class="row mt-5 pt-5">
+  <h3>Social Login</h3>
+
+  <button (click)="signInWithGoogle()" class="button btn-social btn-google">
+    <i class="fa fa-google-plus fa-lg"></i> Connect Google
+  </button>
+</div>
+
+<ng-template #alreadyLoggedIn>
+  <p class="text-success">
+    Already logged in!
+  </p>
+</ng-template>

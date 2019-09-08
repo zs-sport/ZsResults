@@ -1,0 +1,3 @@
+<div *ngFor="let match of matches | async" class="card">
+  <match-detail [match]="match" [isEdit]="isEdit" [isCommentable]="true"></match-detail>
+</div>

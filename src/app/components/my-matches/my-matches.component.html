@@ -1,0 +1,11 @@
+<nav class="level">
+    <div class="level-left"></div>
+    
+    <div class="level-right">
+        <a class="button" [routerLink]="['/edit-match', 0]">Add new</a>
+    </div>
+</nav>
+
+<loading-spinner *ngIf="showSpinner"></loading-spinner>
+
+<match-list [matches]="matches" isEdit="true"></match-list>

@@ -1,0 +1,119 @@
+<article>
+    <h3>New Match Form</h3>
+
+    <div class="field">
+        <label class="label">Category: </label>
+        
+        <div class="control">
+            <div class="select">
+                <select #category='ngModel' [(ngModel)]="match.category" required>
+                    <option [ngValue]=""></option>
+                    <option *ngFor="let category of categories" [ngValue]="category.value">
+                        {{category.key}}
+                    </option>
+                </select>
+            </div>
+        </div>
+
+        <div *ngIf="category.dirty">
+            <span *ngIf='category.errors; then errors else valid'>template renders here...</span>
+        </div>
+    </div>
+
+    <div class="field">
+        <label class="label">Match time: </label>
+
+        <div class="control">
+            <owl-date-time [(ngModel)]="match.startDate"
+             #startDate='ngModel'
+                inputStyleClass="input" required="true"></owl-date-time>
+        </div>
+
+        <div *ngIf="startDate.dirty">
+            <span *ngIf='startDate.errors; then errors else valid'>template renders here...</span>
+        </div>
+    </div>
+
+    <div class="field">
+        <label class="label">Home club: </label>
+        
+        <div class="control">
+            <input placeholder="Home club" class="input" [(ngModel)]="match.homeClubName"
+                required minlength="3" maxlength="40" required
+                #homeClubName='ngModel' autofocus>
+        </div>
+    
+        <div *ngIf="homeClubName.dirty">
+            <span *ngIf='homeClubName.errors; then errors else valid'>template renders here...</span>
+        </div>
+    </div>
+    
+    <div class="field">
+        <label class="label">Away club: </label>
+        
+        <div class="control">
+            <input placeholder="Away club" class="input" [(ngModel)]="match.awayClubName"
+                required minlength="3" maxlength="40" required
+                #awayClubName='ngModel' autofocus>
+        </div>
+    
+        <div *ngIf="awayClubName.dirty">
+            <span *ngIf='awayClubName.errors; then errors else valid'>template renders here...</span>
+        </div>
+    </div>
+    
+    <div class="field">
+        <label class="label">Location: </label>
+        
+        <div class="control">
+            <input placeholder="Location" class="input" [(ngModel)]="match.location"
+                required minlength="4" maxlength="40" required
+                #location='ngModel' autofocus>
+        </div>
+    
+        <div *ngIf="location.dirty">
+            <span *ngIf='location.errors; then errors else valid'>template renders here...</span>
+        </div>
+    </div>
+
+    <div class="field">
+        <label class="label">First half result: </label>
+        
+        <div class="control first-part-result">
+            <input placeholder="0" class="input" [(ngModel)]="result.homeFirstPartResult"
+                #homeFirstPartResult='ngModel' autofocus>
+            -
+            <input placeholder="0" class="input" [(ngModel)]="result.awayFirstPartResult"
+                #awayFirstPartResult='ngModel' autofocus>
+        </div>
+    </div>
+
+    <div class="field">
+        <label class="label">Second half result: </label>
+        
+        <div class="control first-part-result">
+            <input placeholder="0" class="input" [(ngModel)]="result.homeSecondPartResult"
+                #homeSecondPartResult='ngModel' autofocus>
+            -
+            <input placeholder="0" class="input" [(ngModel)]="result.awaySecondPartResult"
+                #awaySecondPartResult='ngModel' autofocus>
+        </div>
+    </div>
+
+    <div class="control">
+        <button *ngIf="!isEdit" class="button is-primary" (click)='createMatch()'
+            [disabled]="!category || !homeClubName.valid || !awayClubName.valid 
+            || !startDate.valid || !location.valid">Create</button>
+        <button *ngIf="isEdit" class="button is-primary" (click)='updateMatch()'
+            [disabled]="!category || !homeClubName.valid || !awayClubName.valid 
+            || !startDate.valid || !location.valid">Update</button>
+    </div>
+
+    <ng-template #valid>
+    <p class="help is-success">looks good!</p>
+    </ng-template>
+
+    <ng-template #errors>
+    <p class="help is-danger">form contains errors!</p>
+    </ng-template>
+</article>
